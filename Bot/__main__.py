@@ -7,9 +7,9 @@ from plugins import web_server
 encoder.start()
 
 app = web.AppRunner(await web_server())
-        await app.setup()
-        bind_address = "0.0.0.0"
-        await web.TCPSite(app, bind_address, PORT).start()
+await app.setup()
+bind_address = "0.0.0.0"
+await web.TCPSite(app, bind_address, PORT).start()
 
 success = create_ubot()
 if success != None:
