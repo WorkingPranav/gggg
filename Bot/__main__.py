@@ -1,8 +1,15 @@
 from Bot import OWNER_ID, encoder, create_ubot
 from pyrogram.types import InlineKeyboardMarkup as IKM, InlineKeyboardButton as IKB
 import asyncio
+from aiohttp import web
+from plugins import web_server
 
 encoder.start()
+
+app = web.AppRunner(await web_server())
+        await app.setup()
+        bind_address = "0.0.0.0"
+        await web.TCPSite(app, bind_address, PORT).start()
 
 success = create_ubot()
 if success != None:
